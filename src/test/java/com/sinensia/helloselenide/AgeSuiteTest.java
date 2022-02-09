@@ -31,43 +31,49 @@ public class AgeSuiteTest {
 
     @Test
     public void underageCola() {
-        cartPage.getcheckout().shouldBe(disabled);
+        cartPage.getCheckout().shouldBe(disabled);
         cartPage.addCola();
-        cartPage.getcheckout().shouldBe(enabled);
         cartPage.total().shouldBe(text("€1.25"));
+        cartPage.getCheckout().shouldBe(enabled);
         cartPage.addCola();
         cartPage.total().shouldBe(text("€2.50"));
         cartPage.checkout();
-        checkoutPage.getAgeInput().shouldBe(exist);
+        checkoutPage.getAgeInput().shouldNot(exist);
+        checkoutPage.getOrder().shouldBe(enabled);
         checkoutPage.order();
         orderPage.getSentMessage().shouldBe(text("Coming right up! ~bzzzt~"));
     }
 
     @Test
     public void underageBeer() {
-        cartPage.getcheckout().shouldBe(disabled);
+        cartPage.getCheckout().shouldBe(disabled);
         cartPage.addBeer();
-        cartPage.getcheckout().shouldBe(enabled);
         cartPage.total().shouldBe(text("€2.00"));
+        cartPage.getCheckout().shouldBe(enabled);
         cartPage.addBeer();
         cartPage.total().shouldBe(text("€4.00"));
         cartPage.checkout();
-        checkoutPage.getAgeInput().shouldBe(exist);
+        checkoutPage.getOrder().shouldBe(disabled);
+        checkoutPage.getAgeInput().should(exist);
         checkoutPage.setAge("17");
+        checkoutPage.getOrder().shouldBe(enabled);
+        checkoutPage.order();
         orderPage.getAlertDiv().shouldNotBe(hidden);
-
     }
 
     @Test
     public void adultBeer() {
-        cartPage.getcheckout().shouldBe(disabled);
+        cartPage.getCheckout().shouldBe(disabled);
         cartPage.addBeer();
-        cartPage.getcheckout().shouldBe(enabled);
         cartPage.total().shouldBe(text("€2.00"));
+        cartPage.getCheckout().shouldBe(enabled);
         cartPage.addBeer();
         cartPage.total().shouldBe(text("€4.00"));
-        checkoutPage.getAgeInput().shouldBe(exist);
+        cartPage.checkout();
+        checkoutPage.getOrder().shouldBe(disabled);
+        checkoutPage.getAgeInput().should(exist);
         checkoutPage.setAge("19");
+        checkoutPage.getOrder().shouldBe(enabled);
         checkoutPage.order();
         orderPage.getAlertDiv().shouldBe(hidden);
         orderPage.getSentMessage().shouldBe(text("Coming right up! ~bzzzt~"));

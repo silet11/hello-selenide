@@ -33,4 +33,8 @@ public class CheckoutPage {
         orderButton.click();
     }
 
+    public SelenideElement getOrder() {
+        return orderButton;
+    }
+
 }

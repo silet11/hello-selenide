@@ -32,8 +32,7 @@ public class CartPage {
     public void checkout() {
         btnCheckout.click();
     }
-
-    public SelenideElement getcheckout() {
+    public SelenideElement getCheckout() {
         return btnCheckout;
     }
 
