@@ -6,12 +6,9 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 
+import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class CartSuiteTest {
@@ -32,5 +29,21 @@ public class CartSuiteTest {
     public void colaTest() {
         cartPage.addCola();
         cartPage.total().shouldBe(text("€1.25"));
+        cartPage.addCola();
+        cartPage.total().shouldBe(text("€2.50"));
+    }
+    @Test
+    public void beerTest() {
+        cartPage.addBeer();
+        cartPage.total().shouldBe(text("€2.00"));
+        cartPage.addBeer();
+        cartPage.total().shouldBe(text("€4.00"));
+    }
+    @Test
+    public void wineTest() {
+        cartPage.addWine();
+        cartPage.total().shouldBe(text("€3.00"));
+        cartPage.addWine();
+        cartPage.total().shouldBe(text("€6.00"));
     }
 }

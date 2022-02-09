@@ -21,6 +21,22 @@ public class CartPage {
         btnAddCola.click();
     }
 
+    public void addBeer() {
+        btnAddBeer.click();
+    }
+
+    public void addWine() {
+        btnAddWine.click();
+    }
+
+    public void checkout() {
+        btnCheckout.click();
+    }
+
+    public SelenideElement getcheckout() {
+        return btnCheckout;
+    }
+
     public SelenideElement total() {
         return txtTotal;
     }
