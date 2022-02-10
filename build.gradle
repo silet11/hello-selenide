@@ -29,7 +29,7 @@ dependencies {
     testImplementation('org.slf4j:slf4j-simple:1.7.30')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}" )
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
     testImplementation("io.cucumber:cucumber-java:7.2.3")
     testImplementation("io.cucumber:cucumber-junit:7.2.3")
@@ -48,5 +48,27 @@ allure {
 
     useJUnit5 {
         version = "${allureVersion}"
+    }
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumberCli() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:target/cucumber-report.html',
+                    '--plugin', 'io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm',
+                    '--glue','com.sinensia',
+                    'src/test/resources']
+        }
     }
 }

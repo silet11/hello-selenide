@@ -3,10 +3,8 @@ package com.sinensia.helloselenide.cucumber;
 import com.sinensia.helloselenide.CartPage;
 import com.sinensia.helloselenide.CheckoutPage;
 import com.sinensia.helloselenide.OrderPage;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.open;
@@ -17,17 +15,20 @@ public class RobobarStepDefinitions {
     OrderPage orderPage;
 
     @Given("user opens robobar webside")
+    @Given("l'usuari entra al bar")
     public void userOpensRobobarWebside() {
         open("http://localhost:3000");
         cartPage = new CartPage();
     }
 
     @When("user adds a cola")
+    @When("l'usuari afegeix una cocacola")
     public void userAddACola() {
         cartPage.addCola();
     }
 
     @Then("total should be €{double}")
+    @Then("el total ha de ser {double}€")
     public void totalShouldBe€(Double total) {
         cartPage.total().shouldBe(exactText(String.format("€%.2f",total)));
     }
@@ -115,4 +116,9 @@ public class RobobarStepDefinitions {
         userAddsNBeers(beer);
         userAddsNWines(wine);
     }
+    @But("checkout result is {string}")
+    public void checkoutResultIsExpected(String expected) {
+        throw new PendingException();
+    }
+
 }
