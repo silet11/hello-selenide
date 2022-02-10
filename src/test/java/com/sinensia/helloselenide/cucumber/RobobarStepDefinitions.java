@@ -49,8 +49,8 @@ public class RobobarStepDefinitions {
     }
 
     @When("user enter his age is {int}")
-    public void userEnterHisAgeIs(int arg0) {
-        checkoutPage.setAge("17");
+    public void userEnterHisAgeIs(int age) {
+        checkoutPage.setAge(String.format("%s",age));
     }
 
     @When("user press order button")
@@ -62,5 +62,15 @@ public class RobobarStepDefinitions {
     @Then("alert is active")
     public void alertIsActive() {
         orderPage.getAlertDiv().shouldNotBe(hidden);
+    }
+
+    @Then("alert is not active")
+    public void alertIsNotActive() {
+        orderPage.getAlertDiv().shouldBe(hidden);
+    }
+
+    @And("order is confirmed")
+    public void orderIsConfirmed() {
+        orderPage.getSentMessage().shouldBe(text("Coming right up! ~bzzzt~"));
     }
 }

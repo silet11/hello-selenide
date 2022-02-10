@@ -40,3 +40,13 @@ Feature: Robobar cart
     And user enter his age is 17
     And user press order button
     Then alert is active
+
+  Scenario: user add one beer and age is 20
+    Given user opens robobar webside
+    When user adds a beer
+    Then total should be €2.00
+    When user press submit button
+    And user enter his age is 20
+    And user press order button
+    Then alert is not active
+    And order is confirmed
