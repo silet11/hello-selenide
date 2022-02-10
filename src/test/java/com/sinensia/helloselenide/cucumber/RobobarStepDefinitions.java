@@ -73,4 +73,46 @@ public class RobobarStepDefinitions {
     public void orderIsConfirmed() {
         orderPage.getSentMessage().shouldBe(text("Coming right up! ~bzzzt~"));
     }
+
+    @When("user adds {int} cola")
+    public void userAddsNCola(int n) {
+        for(int i=0;i<n;i++){
+            cartPage.addCola();
+        }
+    }
+
+    @When("user adds {int} beer")
+    public void userAddsNBeer(int n) {
+        for(int i=0;i<n;i++){
+            cartPage.addBeer();
+        }
+    }
+
+    @When("user adds {int} wine")
+    public void userAddsNWine(int n) {
+        for(int i=0;i<n;i++){
+            cartPage.addBeer();
+        }
+    }
+
+    @When("user adds {int} beers")
+    public void userAddsNBeers(int n) {
+        for(int i=0; i<n; ++i) {
+            cartPage.addBeer();
+        }
+    }
+
+    @When("user adds {int} wines")
+    public void userAddsNWines(int n) {
+        for(int i=0; i<n; ++i) {
+            cartPage.addWine();
+        }
+    }
+
+    @When("user adds {int} cola {int} beer {int} wine")
+    public void userAddsColaBeerWine(int cola, int beer, int wine) {
+        userAddsNCola(cola);
+        userAddsNBeers(beer);
+        userAddsNWines(wine);
+    }
 }
