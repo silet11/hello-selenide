@@ -17,7 +17,7 @@ public class RobobarStepDefinitions {
     @Given("user opens robobar webside")
     @Given("l'usuari entra al bar")
     public void userOpensRobobarWebside() {
-        open("http://localhost:3000");
+        open("http://robobar.sinensia.pw");
         cartPage = new CartPage();
     }
 

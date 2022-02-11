@@ -39,6 +39,8 @@ dependencies {
 }
 
 test {
+    systemProperties["selenide.remote"] = "http://localhost:4444/wd/hub";
+    systemProperties["selenide.browser"] = "firefox";
     ignoreFailures = true
     useJUnitPlatform()
 }
@@ -66,7 +68,6 @@ task cucumberCli() {
             args = [
                     '--plugin', 'pretty',
                     '--plugin', 'html:target/cucumber-report.html',
-                    '--plugin', 'io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm',
                     '--glue','com.sinensia',
                     'src/test/resources']
         }
