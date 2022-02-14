@@ -26,7 +26,7 @@ public class AgeSuiteTest {
 
     @BeforeEach
     public void setUp() {
-        open("http://10.250.9.1:3000");
+        open("/");
     }
 
     @Test

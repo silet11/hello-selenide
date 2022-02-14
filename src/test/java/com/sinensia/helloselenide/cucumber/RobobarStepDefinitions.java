@@ -1,10 +1,12 @@
 package com.sinensia.helloselenide.cucumber;
 
+import com.codeborne.selenide.Configuration;
 import com.sinensia.helloselenide.CartPage;
 import com.sinensia.helloselenide.CheckoutPage;
 import com.sinensia.helloselenide.OrderPage;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.open;
@@ -17,7 +19,12 @@ public class RobobarStepDefinitions {
     @Given("user opens robobar webside")
     @Given("l'usuari entra al bar")
     public void userOpensRobobarWebside() {
-        open("http://robobar.sinensia.pw");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
+
+        open("/");
         cartPage = new CartPage();
     }
 

@@ -7,5 +7,32 @@
         "port": "4444"
       }
     }
+  },
+  "MicrosoftEdge": {
+    "default": "97.0",
+    "versions": {
+      "97.0": {
+        "image": "browsers/edge:97.0",
+        "port": "4444",
+        "path": "/"
+      }
+    }
+
+  },
+  "operablink": {
+    "default": "83.0",
+    "versions": {
+      "82.0": {
+        "image": "selenoid/opera:82.0",
+        "port": "4444",
+        "path": "/"
+      },
+      "83.0": {
+        "image": "selenoid/opera:83.0",
+        "port": "4444",
+        "path": "/"
+      }
+    }
   }
 }
+
