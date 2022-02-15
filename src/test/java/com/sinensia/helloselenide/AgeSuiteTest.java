@@ -61,7 +61,7 @@ public class AgeSuiteTest {
         orderPage.getAlertDiv().shouldNotBe(hidden);
     }
 
-    @Test
+   // @Test
     public void adultBeer() {
         cartPage.getCheckout().shouldBe(disabled);
         cartPage.addBeer();
