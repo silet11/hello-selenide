@@ -1,22 +1,30 @@
 pipeline {
     agent any
-
     stages {
-        stage('Clean'){
-            steps{
+        stage('Clean') {
+            steps {
                 sh './gradlew clean'
             }
         }
-        stage('Test'){
-            steps{
-                 sh './gradlew test'
-            }
-            post{
-                always{
-                    junit 'built/test-results/test/*.xml'
+        stage('Test') {
+            // parallelize browser tests
+            parallel {
+                stage('test: chrome') {
+                    steps {
+                        sh './gradlew test'
+                    }
+                }
+                stage('test: firefox') {
+                    steps {
+                        sh './gradlew testFirefox'
+                    }
                 }
             }
-         }
-
+            post {
+                always {
+                    junit 'build/test-results/test/*.xml'
+                }
+            }
+        }
     }
 }
