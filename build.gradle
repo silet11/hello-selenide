@@ -99,10 +99,6 @@ task cucumberCli() {
         }
     }
 }
-tasks.named('test') {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
 
 jacocoTestReport {
     dependsOn test
