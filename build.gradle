@@ -3,7 +3,6 @@ plugins {
     id 'io.qameta.allure' version '2.9.3'
     id 'jacoco'
     id 'pmd'
-    id 'info.solidsoft.pitest' version '1.7.0'
 }
 
 group 'com.sinensia'
@@ -112,8 +111,3 @@ pmd{
     ignoreFailures = true
 }
 
-pitest {
-    junit5PluginVersion = '0.12'
-    outputFormats = ['XML', 'HTML']
-    timestampedReports = false
-}
