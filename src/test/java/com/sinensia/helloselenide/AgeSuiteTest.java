@@ -62,20 +62,20 @@ public class AgeSuiteTest {
     }
 
    // @Test
-    public void adultBeer() {
-        cartPage.getCheckout().shouldBe(disabled);
-        cartPage.addBeer();
-        cartPage.total().shouldBe(text("€2.00"));
-        cartPage.getCheckout().shouldBe(enabled);
-        cartPage.addBeer();
-        cartPage.total().shouldBe(text("€4.00"));
-        cartPage.checkout();
-        checkoutPage.getOrder().shouldBe(disabled);
-        checkoutPage.getAgeInput().should(exist);
-        checkoutPage.setAge("19");
-        checkoutPage.getOrder().shouldBe(enabled);
-        checkoutPage.order();
-        orderPage.getAlertDiv().shouldBe(hidden);
-        orderPage.getSentMessage().shouldBe(text("Coming right up! ~bzzzt~"));
-    }
+    //public void adultBeer() {
+      //  cartPage.getCheckout().shouldBe(disabled);
+        //cartPage.addBeer();
+      //  cartPage.total().shouldBe(text("€2.00"));
+       // cartPage.getCheckout().shouldBe(enabled);
+        //cartPage.addBeer();
+        //cartPage.total().shouldBe(text("€4.00"));
+        //cartPage.checkout();
+        //checkoutPage.getOrder().shouldBe(disabled);
+        //checkoutPage.getAgeInput().should(exist);
+        //checkoutPage.setAge("19");
+        //checkoutPage.getOrder().shouldBe(enabled);
+        //checkoutPage.order();
+        //orderPage.getAlertDiv().shouldBe(hidden);
+        //orderPage.getSentMessage().shouldBe(text("Coming right up! ~bzzzt~"));
+   // }
 }
